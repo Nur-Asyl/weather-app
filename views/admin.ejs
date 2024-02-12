@@ -1,0 +1,28 @@
+<!-- admin.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">User Management</h1>
+
+        <!-- User List -->
+        <h2>User List</h2>
+        <ul class="list-group">
+            <% users.forEach(user => { %>
+                <li class="list-group-item"><%= user.username %> - <a href="/admin/edit/<%= user._id %>" class="btn btn-primary">Edit</a> | <a href="/admin/delete/<%= user._id %>" class="btn btn-danger">Delete</a></li>
+            <% }); %>
+        </ul>
+
+        <!-- Add User Button -->
+        <a href="/admin/add" class="btn btn-success mt-3">Add User</a>
+    </div>
+</body>
+</html>
