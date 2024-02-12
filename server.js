@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const dotenv = require('dotenv');
-// const jwt = require('jsonwebtoken');
 
 const weatherRoutes = require('./routes/weatherRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRouters = require('./routes/adminRoutes');
+
+const isAdmin = require('./middleware/adminMiddleware')
 
 
 const app = express();
@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', weatherRoutes);
 app.use('/', userRoutes);
-app.use('/admin', adminRouters);
+app.use('/admin', isAdmin, adminRouters);
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`)

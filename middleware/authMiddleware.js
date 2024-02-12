@@ -1,6 +1,15 @@
 // const jwt = require('jsonwebtoken');
 
 
+
+const isAuthenticated = (req, res, next) => {
+    if (req.session.user) {
+        next(); 
+    } else {
+        res.redirect('/login'); 
+    }
+};
+
 // function verifyToken(req, res, next) {
 //     const tokena = 'Rg5y$98h4@pX!qL0aP2s#4dS6fG8hJk1';
 
@@ -35,4 +44,4 @@
 //     }
 // }
 
-// module.exports = verifyToken;
+module.exports = isAuthenticated;
